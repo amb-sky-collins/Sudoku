@@ -1,4 +1,14 @@
 import math,random
+import pygame
+
+
+# Variables
+square_width = 210
+cell_width = 70
+bg_color = (255, 255, 245)
+line_color = (0, 0, 0)
+thick_line_width = 10
+thin_line_width = 2
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -251,10 +261,36 @@ class Cell:
 class Board:
 
     def __init__(self, width, height, screen, difficulty):
-        pass
+        # Constructor
+        self.width = width
+        self.height = height
+        self.screen = screen
+        self.difficulty = difficulty
 
     def draw(self):
-        pass
+        # Thicker lines - Horizontal
+        pygame.draw.line(self.screen, line_color, (0, square_width), (self.width, square_width), thick_line_width)
+        pygame.draw.line(self.screen, line_color, (0, square_width * 2), (self.width, square_width * 2), thick_line_width)
+
+        # Thicker lines - Vertical
+        pygame.draw.line(self.screen, line_color, (square_width, 0), (square_width, self.width), thick_line_width)
+        pygame.draw.line(self.screen, line_color, (square_width * 2, 0), (square_width * 2, self.width), thick_line_width)
+
+        # Thinner lines - Horizontal
+        pygame.draw.line(self.screen, line_color, (0, cell_width), (self.width, cell_width), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (0, cell_width * 2), (self.width, cell_width * 2), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (0, cell_width * 4), (self.width, cell_width * 4), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (0, cell_width * 5), (self.width, cell_width * 5), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (0, cell_width * 7), (self.width, cell_width * 7), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (0, cell_width * 8), (self.width, cell_width * 8), thin_line_width)
+
+        # Thicker lines - Vertical
+        pygame.draw.line(self.screen, line_color, (cell_width, 0), (cell_width, self.width), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (cell_width * 2, 0), (cell_width * 2, self.width), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (cell_width * 4, 0), (cell_width * 4, self.width), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (cell_width * 5, 0), (cell_width * 5, self.width), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (cell_width * 7, 0), (cell_width * 7, self.width), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (cell_width * 8, 0), (cell_width * 8, self.width), thin_line_width)
 
     def select(self, row, col):
         pass
