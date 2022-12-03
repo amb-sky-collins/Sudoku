@@ -87,9 +87,9 @@ class SudokuGenerator:
             while j < col_start + 3:
                 if self.board[i][j] == num:
                     return False
-            j += 1
-        i += 1
-        j = col_start
+                j += 1
+            i += 1
+            j = col_start
         return True 
 
     '''
@@ -127,7 +127,7 @@ class SudokuGenerator:
                 if number in digits_for_use:
                     number = random.randint(1, 9)
                 else:
-                    # TODO: how to set cell value?
+                    self.board[i][j] = number
                     digits_for_use.remove(number)
                 j += 1
             i += 1
@@ -210,14 +210,16 @@ class SudokuGenerator:
 	Return: None
     '''
     def remove_cells(self):
-        # determine how many cells are going to be removed
-        # for those many cells:
+        cells_to_remove = 64  # research: sudoku must have 17 clues to have a valid solution
+        for cell in range(cells_to_remove):
             # pick random cell
-            # set value to zero
-            # if value is already zero:
-                # break? continue?
-        
-        pass
+            i = random.randint(0, 8)
+            j = random.randint(0, 8)
+
+            if self.board[i][j] == 0:  # if the cell is already zero:
+                continue               # move on to the next cell
+            else:                      # otherwise:
+                self.board[i][j] = 0   # set that cell equal to zero
 
 '''
 DO NOT CHANGE
