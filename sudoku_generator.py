@@ -1,30 +1,9 @@
 import math,random
 import pygame
-
-
-# Variables
-square_width = 210
-cell_width = 70
-bg_color = (255, 255, 245)
-line_color = (0, 0, 0)
-thick_line_width = 10
-thin_line_width = 2
-
-"""
-This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
-https://www.geeksforgeeks.org/program-sudoku-generator/
-
-"""
+from constants import *
 
 class SudokuGenerator:
     '''
-	create a sudoku board - initialize class variables and set up the 2D board
-	This should initialize:
-	self.row_length		- the length of each row
-	self.removed_cells	- the total number of cells to be removed
-	self.board			- a 2D list of ints to represent the board
-	self.box_length		- the square root of row_length
-
 	Parameters:
     row_length is the number of rows/columns of the board (always 9 for this project)
     removed_cells is an integer value - the number of cells to be removed
@@ -112,7 +91,7 @@ class SudokuGenerator:
         i += 1
         j = col_start
         return True 
-    
+
     '''
     Determines if it is valid to enter num at (row, col) in the board
     This is done by checking that num is unused in the appropriate, row, column, and box
