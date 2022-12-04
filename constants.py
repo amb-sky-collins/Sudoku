@@ -10,3 +10,5 @@ thin_line_width = 2
 width = 630
 height = 630
 bg_color = (255, 255, 246)
+
+row_length = 9

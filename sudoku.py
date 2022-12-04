@@ -2,14 +2,16 @@ from sudoku_generator import *
 from sys import *
 import pygame
 
+screen = pygame.display.set_mode((width, height))
 # Initializing pygame
 pygame.init() # pygame window
 pygame.display.set_caption('Sudoku') # caption for that window
-board = Board(width, height, screen=pygame.display.set_mode((width, height), row=0, col=0), difficulty=0)  # Change difficulty later
+board = Board(width, height, screen, row=0, col=0, difficulty=0)  # Change difficulty later
 
 
 # referred to https://youtu.be/U9H60qtw0Yg for game_start(screen) method
 # displays game start screen with easy, medium, and hard difficulty levels
+
 def game_start(screen):
     title_font = pygame.font.Font(None, 90)
     prompt_font = pygame.font.Font(None, 80)
@@ -48,24 +50,31 @@ def game_start(screen):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit() # stops loop
+            global removed_cells
+            removed_cells = None
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rect.collidepoint(event.pos):
                     # Checks if mouse is on easy button
+                    removed_cells = 30
                     return  # If the mouse is on the start button, we can return to main
                 elif medium_rect.collidepoint(event.pos): # If the mouse is on the medium button, return
+                    removed_cells = 40
                     return
                 elif hard_rect.collidepoint(event.pos): # If the mouse is on the hard button, return
+                    removed_cells = 50
                     return
-                # TODO: UPDATE RETURNS LATER
 
         pygame.display.update()
 
 
 # Main function
 def main():
+    game_start(screen)
     board.screen.fill(bg_color)
     board.draw()
-    game_start(screen=pygame.display.set_mode((width, height)))
+    """print(SudokuGenerator(row_length, removed_cells).get_board())
+    print(SudokuGenerator(row_length, removed_cells).fill_values())
+    print(SudokuGenerator(row_length, removed_cells).remove_cells())""" # TODO: HOW TO PRINT THE NUMBERS ONTO THE BOARD?
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
