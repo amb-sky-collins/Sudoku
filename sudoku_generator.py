@@ -267,12 +267,15 @@ class Cell:
 # recommended class
 class Board:
 
-    def __init__(self, width, height, screen, difficulty):
+    def __init__(self, row, col, width, height, screen, difficulty):
         # Constructor
+        self.row = row
+        self.col = col
         self.width = width
         self.height = height
         self.screen = screen
         self.difficulty = difficulty
+        self.cells = [[Cell(self.board[i][j], i, j, self.screen) for j in range(col)] for i in range(row)]
 
     def draw(self):
         # Thicker lines - Horizontal
@@ -291,7 +294,7 @@ class Board:
         pygame.draw.line(self.screen, line_color, (0, cell_width * 7), (self.width, cell_width * 7), thin_line_width)
         pygame.draw.line(self.screen, line_color, (0, cell_width * 8), (self.width, cell_width * 8), thin_line_width)
 
-        # Thicker lines - Vertical
+        # Thinner lines - Vertical
         pygame.draw.line(self.screen, line_color, (cell_width, 0), (cell_width, self.width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (cell_width * 2, 0), (cell_width * 2, self.width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (cell_width * 4, 0), (cell_width * 4, self.width), thin_line_width)
@@ -318,10 +321,13 @@ class Board:
         pass
 
     def is_full(self):
-        pass
+        if self.find_empty() is None:
+            return True
+        else:
+            return False
 
     def update_board(self):
-        pass
+        self.cells = [[Cell(self.board[i][j], i, j, self.screen) for j in range(self.col)] for i in range(self.row)]
 
     def find_empty(self):
         pass

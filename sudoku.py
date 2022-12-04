@@ -5,7 +5,7 @@ import pygame
 # Initializing pygame
 pygame.init() # pygame window
 pygame.display.set_caption('Sudoku') # caption for that window
-board = Board(width, height, screen=pygame.display.set_mode((width, height)), difficulty=0)  # Change difficulty later
+board = Board(width, height, screen=pygame.display.set_mode((width, height), row=0, col=0), difficulty=0)  # Change difficulty later
 
 
 # referred to https://youtu.be/U9H60qtw0Yg for game_start(screen) method
