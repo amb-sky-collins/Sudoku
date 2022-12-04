@@ -24,7 +24,7 @@ class SudokuGenerator:
 	Return: list[list]
     '''
     def get_board(self):
-        return [[0 for row in range(self.row_length)] for column in range(self.row_length)]  # row_length used twice because row will always be 9
+        return [[0 for row in range(self.row_length) for column in range(self.row_length)]] # row_length used twice because row will always be 9
 
     '''
 	Displays the board to the console
@@ -267,7 +267,7 @@ class Cell:
 # recommended class
 class Board:
 
-    def __init__(self, row, col, width, height, screen, difficulty):
+    def __init__(self, width, height, screen, row, col, difficulty):
         # Constructor
         self.row = row
         self.col = col
