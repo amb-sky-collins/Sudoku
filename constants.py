@@ -7,6 +7,12 @@ thick_line_width = 10
 thin_line_width = 2
 outline_color = (226, 25, 39)
 
+
+number_font = (400)
+number_color = (0, 0, 0)
+
+
+
 # Variables
 width = 630
 height = 700
@@ -14,4 +20,4 @@ bg_color = (255, 255, 246)
 button_color = (82, 182, 189)
 font_color = (255, 255, 255)
 
-row_length = 9
+row_length = 9 # number of rows and cols
