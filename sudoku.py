@@ -105,7 +105,8 @@ def main():
                 pygame.quit()
                 exit()  # removes error message when window is closed by stopping while True loop
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = pygame.mouse.get_pos()  # TODO: Use later to determine what cell is being clicked?
+                x, y = event.pos  # Determines coordinates of cell being clicked
+                clicked_cell = board.click(x, y)  # Determines the row and col of the cell being clicked
                 if reset_rect.collidepoint(event.pos):
                     pass
                 elif restart_rect.collidepoint(event.pos):
