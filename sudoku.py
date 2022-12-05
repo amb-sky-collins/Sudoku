@@ -104,6 +104,13 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()  # removes error message when window is closed by stopping while True loop
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if reset_rect.collidepoint(event.pos):
+                    pass
+                elif restart_rect.collidepoint(event.pos):
+                    pass
+                elif exit_rect.collidepoint(event.pos):
+                    exit()
 
         pygame.display.update()
 
