@@ -306,7 +306,50 @@ class Board:
         pass
 
     def click(self, x, y):
-        pass
+        row = None
+        col = None
+
+        # Determines the column the user clicked in
+        if x in range(0, 69):
+            col = 1
+        elif x in range(72, 139):
+            col = 2
+        elif x in range(142, 206):
+            col = 3
+        elif x in range(216, 278):
+            col = 4
+        elif x in range(282, 350):
+            col = 5
+        elif x in range(352, 414):
+            col = 6
+        elif x in range(427, 488):
+            col = 7
+        elif x in range(493, 558):
+            col = 8
+        elif x in range(563, 600):
+            col = 9
+
+        # Determines the row the user clicked in
+        if y in range(0, 69):
+            row = 1
+        elif y in range(72, 139):
+            row = 2
+        elif y in range(142, 206):
+            row = 3
+        elif y in range(216, 278):
+            row = 4
+        elif y in range(282, 350):
+            row = 5
+        elif y in range(352, 414):
+            row = 6
+        elif y in range(427, 488):
+            row = 7
+        elif y in range(493, 558):
+            row = 8
+        elif y in range(563, 600):
+            row = 9
+
+        return tuple(row, col)
 
     def clear(self):
         pass
