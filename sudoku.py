@@ -49,7 +49,7 @@ def game_start(screen):
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                exit() # stops loop
+                exit()  # stops loop
             global removed_cells
             removed_cells = None
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -72,6 +72,30 @@ def main():
     game_start(screen)
     board.screen.fill(bg_color)
     board.draw()
+
+    button_font = pygame.font.Font(None, 50)
+    # Creates reset button
+    reset_text = button_font.render('Reset', True, font_color)
+    reset_surf = pygame.Surface((reset_text.get_size()[0] + 20, reset_text.get_size()[1] + 20))
+    reset_surf.fill(button_color)
+    reset_surf.blit(reset_text, (10, 10))
+    reset_rect = reset_surf.get_rect(center=(width // 3 - 75, height // 2 + 315))
+    screen.blit(reset_surf, reset_rect)
+    # Creates restart button
+    restart_text = button_font.render('Restart', True, font_color)
+    restart_surf = pygame.Surface((restart_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
+    restart_surf.fill(button_color)
+    restart_surf.blit(restart_text, (10, 10))
+    restart_rect = restart_surf.get_rect(center=(width // 3 + 110, height // 2 + 315))
+    screen.blit(restart_surf, restart_rect)
+    # Creates exit button
+    exit_text = button_font.render('Exit', True, font_color)
+    exit_surf = pygame.Surface((exit_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
+    exit_surf.fill(button_color)
+    exit_surf.blit(exit_text, (10, 10))
+    exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
+    screen.blit(exit_surf, exit_rect)
+
     """print(SudokuGenerator(row_length, removed_cells).get_board())
     print(SudokuGenerator(row_length, removed_cells).fill_values())
     print(SudokuGenerator(row_length, removed_cells).remove_cells())""" # TODO: HOW TO PRINT THE NUMBERS ONTO THE BOARD?
@@ -79,7 +103,7 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                exit() # removes error message when window is closed by stopping while True loop
+                exit()  # removes error message when window is closed by stopping while True loop
 
         pygame.display.update()
 

@@ -8,7 +8,9 @@ thin_line_width = 2
 
 # Variables
 width = 630
-height = 630
+height = 700
 bg_color = (255, 255, 246)
+button_color = (82, 182, 189)
+font_color = (255, 255, 255)
 
 row_length = 9
