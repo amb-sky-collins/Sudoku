@@ -248,12 +248,15 @@ def generate_sudoku(size, removed):
 # recommended class
 class Cell:
 
-    def __init__(self, value, row, col, screen):
+    def __init__(self, value, row, col, width, height, screen):
         self.value = value
         self.row = row
         self.col = col
+        self.width = width
+        self.height = height
         self.screen = screen
 
+    # updates cell's value
     def set_cell_value(self, value):
         self.value = value
 
@@ -262,6 +265,17 @@ class Cell:
 
     def draw(self):
         pass
+        """num_font = pygame.font.Font(None, number_font)
+        num_1_surf = num_font.render('1', 0, number_color)
+        num_2_surf = num_font.render('2', 0, number_color)
+        screen = pygame.display.set_mode((width, height))
+
+        if self.value == '1':
+            num_1_rect = num_1_surf.get_rect(center=(width // 2, height // 2 + 20))
+            screen.blit(num_1_surf, num_1_rect)
+
+        elif self.value == '2':
+            pass"""
 
 
 # recommended class
