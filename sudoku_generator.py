@@ -305,11 +305,19 @@ class Board:
         pygame.draw.line(self.screen, line_color, (cell_width * 8, 0), (cell_width * 8, self.width), thin_line_width)
 
     def select(self, row, col):
-        pass
+        # Draws red border around selected cell
+        pygame.draw.line(self.screen, outline_color, (col * cell_width, row * cell_width), ((col * cell_width) + cell_width, row * cell_width), thin_line_width)
+        pygame.draw.line(self.screen, outline_color, (col * cell_width, (row * cell_width) + cell_width), ((col * cell_width) + cell_width, (row * cell_width) + cell_width), thin_line_width)
+        pygame.draw.line(self.screen, outline_color, (col * cell_width, row * cell_width), (col * cell_width, (row * cell_width) + cell_width), thin_line_width)
+        pygame.draw.line(self.screen, outline_color, ((col * cell_width) + cell_width, row * cell_width), ((col * cell_width) + cell_width, (row * cell_width) + cell_width), thin_line_width)
 
     def click(self, x, y):
-        row = y // cell_width
-        col = x // cell_width
+        if y > 630:
+            row = None
+            col = None
+        else:
+            row = y // cell_width
+            col = x // cell_width
 
         return row, col
 

@@ -107,6 +107,7 @@ def main():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos  # Determines coordinates of cell being clicked
                 clicked_cell = board.click(x, y)  # Determines the row and col of the cell being clicked
+                board.select(clicked_cell[0], clicked_cell[1])
                 if reset_rect.collidepoint(event.pos):
                     pass
                 elif restart_rect.collidepoint(event.pos):
