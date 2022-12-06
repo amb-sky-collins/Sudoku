@@ -122,6 +122,111 @@ def game_in_progress_buttons(screen):
                 prev_clicked_cell = clicked_cell
 
         pygame.display.update()
+        return
+
+
+def display_numbers(screen):
+    array = generate_sudoku(9, removed_cells)
+    puzzle_num_font = pygame.font.Font(None, 70)
+
+    row_1 = array[0][:]
+    for number in row_1:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_1.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 - 40)) # position
+            screen.blit(surf_number, surf_number_rect)
+
+    row_2 = array[1][:]
+    for number in row_2:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_2.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 35)) # position
+            screen.blit(surf_number, surf_number_rect)
+
+    row_3 = array[2][:]
+    for number in row_3:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_3.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 100)) # position
+            screen.blit(surf_number, surf_number_rect)
+
+    row_4 = array[3][:]
+    for number in row_4:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_4.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 175)) # position
+            screen.blit(surf_number, surf_number_rect)
+
+    row_5 = array[4][:]
+    for number in row_5:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_5.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 240)) # position
+            screen.blit(surf_number, surf_number_rect)
+
+    row_6 = array[5][:]
+    for number in row_6:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_6.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 310)) # position
+            screen.blit(surf_number, surf_number_rect)
+
+    row_7 = array[6][:]
+    for number in row_7:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_7.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 385)) # position
+            screen.blit(surf_number, surf_number_rect)
+
+    row_8 = array[7][:]
+    for number in row_8:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_8.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 450)) # position
+            screen.blit(surf_number, surf_number_rect)
+
+    row_9 = array[8][:]
+    for number in row_9:
+        string_number = str(number)
+        if number == 0:
+            pass
+        else:
+            surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
+            next = row_9.index(number) * 70
+            surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 520)) # position
+            screen.blit(surf_number, surf_number_rect)
 
 def game_won(screen):
     title_font = pygame.font.Font(None, 90)
@@ -184,15 +289,8 @@ def main():
     board.screen.fill(bg_color)
     board.draw()
     game_in_progress_buttons(screen)
+    display_numbers(screen)
 
-    generated_sudoku_array = generate_sudoku(9, removed_cells)
-    for i in generated_sudoku_array:
-        for j in generated_sudoku_array[i]:
-            num_font = pygame.font.Font(None, number_font)
-            num_surf = num_font.render(j, 0, number_color)
-            # make a for loop to iterate through each cell to display the appropriate number
-                # num_rect = num_surf.get_rect(center=(width // 2, height // 2 + 20)) # fix position based on iteration
-                # screen.blit(num_surf, num_rect)
 
     """
     if the board is full and all the numbers match the solution:
