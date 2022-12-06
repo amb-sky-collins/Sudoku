@@ -180,7 +180,7 @@ def main():
     board.screen.fill(bg_color)
     board.draw()
 
-    # generate_sudoku(9, removed_cells) # generates board TODO: HOW TO DISPLAY THIS ON THE BOARD?
+    generate_sudoku(9, removed_cells) # generates board TODO: HOW TO DISPLAY THIS ON THE BOARD?
 
     """
     if the board is full and all the numbers match the solution:

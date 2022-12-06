@@ -119,11 +119,10 @@ class SudokuGenerator:
         for row in range(row_start, row_start + 3):
             for col in range(col_start, col_start + 3):
                 number = random.randint(1, 9)
-                if number in digits_for_use:
+                while number not in digits_for_use:
                     number = random.randint(1, 9)
-                else:
-                    self.board[row][col] = number
-                    digits_for_use.remove(number)
+                self.board[row][col] = number
+                digits_for_use.remove(number)
 
     '''
     Fills the three boxes along the main diagonal of the board
