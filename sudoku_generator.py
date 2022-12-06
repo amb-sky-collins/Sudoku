@@ -322,15 +322,18 @@ class Board:
             pygame.draw.line(self.screen, outline_color, ((col * cell_width) + cell_width, row * cell_width), ((col * cell_width) + cell_width, (row * cell_width) + cell_width), thin_line_width)
 
     def deselect(self, row, col):
-        # Draws back black border to previously selected cell
-        pygame.draw.line(self.screen, line_color, (col * cell_width, row * cell_width),
-                         ((col * cell_width) + cell_width, row * cell_width), thin_line_width)
-        pygame.draw.line(self.screen, line_color, (col * cell_width, (row * cell_width) + cell_width),
-                         ((col * cell_width) + cell_width, (row * cell_width) + cell_width), thin_line_width)
-        pygame.draw.line(self.screen, line_color, (col * cell_width, row * cell_width),
-                         (col * cell_width, (row * cell_width) + cell_width), thin_line_width)
-        pygame.draw.line(self.screen, line_color, ((col * cell_width) + cell_width, row * cell_width),
-                         ((col * cell_width) + cell_width, (row * cell_width) + cell_width), thin_line_width)
+        if (row is None) or (col is None):
+            pass
+        else:
+            # Draws back black border to previously selected cell
+            pygame.draw.line(self.screen, line_color, (col * cell_width, row * cell_width),
+                             ((col * cell_width) + cell_width, row * cell_width), thin_line_width)
+            pygame.draw.line(self.screen, line_color, (col * cell_width, (row * cell_width) + cell_width),
+                             ((col * cell_width) + cell_width, (row * cell_width) + cell_width), thin_line_width)
+            pygame.draw.line(self.screen, line_color, (col * cell_width, row * cell_width),
+                             (col * cell_width, (row * cell_width) + cell_width), thin_line_width)
+            pygame.draw.line(self.screen, line_color, ((col * cell_width) + cell_width, row * cell_width),
+                             ((col * cell_width) + cell_width, (row * cell_width) + cell_width), thin_line_width)
 
     def click(self, x, y):
         if y > 630:
