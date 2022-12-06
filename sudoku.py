@@ -112,7 +112,10 @@ def game_in_progress_buttons(screen):
                 if reset_rect.collidepoint(event.pos):
                     pass
                 elif restart_rect.collidepoint(event.pos):
-                    pass
+                    game_start(screen)
+                    board.screen.fill(bg_color)
+                    board.draw()
+                    game_in_progress_buttons(screen)
                 elif exit_rect.collidepoint(event.pos):
                     exit()
 
@@ -166,7 +169,8 @@ def game_over(screen):
                 exit()  # stops loop
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if restart_rect.collidepoint(event.pos):
-                    screen.fill(bg_color)
+                    game_start(screen)
+                    board.screen.fill(bg_color)
                     board.draw()
                     game_in_progress_buttons(screen)
 
@@ -179,6 +183,8 @@ def main():
     game_start(screen)
     board.screen.fill(bg_color)
     board.draw()
+    game_in_progress_buttons(screen)
+
 
     generate_sudoku(9, removed_cells) # generates board TODO: HOW TO DISPLAY THIS ON THE BOARD?
 
@@ -188,8 +194,6 @@ def main():
     elif the board is full and the numbers don't match the solution:
         game_over(screen)
     """
-
-    game_over(screen)
 
     while True:
         for event in pygame.event.get():
