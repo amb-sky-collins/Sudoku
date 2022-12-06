@@ -185,8 +185,14 @@ def main():
     board.draw()
     game_in_progress_buttons(screen)
 
-
-    generate_sudoku(9, removed_cells) # generates board TODO: HOW TO DISPLAY THIS ON THE BOARD?
+    generated_sudoku_array = generate_sudoku(9, removed_cells)
+    for i in generated_sudoku_array:
+        for j in generated_sudoku_array[i]:
+            num_font = pygame.font.Font(None, number_font)
+            num_surf = num_font.render(j, 0, number_color)
+            # make a for loop to iterate through each cell to display the appropriate number
+                # num_rect = num_surf.get_rect(center=(width // 2, height // 2 + 20)) # fix position based on iteration
+                # screen.blit(num_surf, num_rect)
 
     """
     if the board is full and all the numbers match the solution:
