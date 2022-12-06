@@ -11,7 +11,6 @@ board = Board(width, height, screen, row=0, col=0, difficulty=0)  # Change diffi
 
 # referred to https://youtu.be/U9H60qtw0Yg for game_start(screen) method
 # displays game start screen with easy, medium, and hard difficulty levels
-
 def game_start(screen):
     title_font = pygame.font.Font(None, 90)
     prompt_font = pygame.font.Font(None, 80)
@@ -54,15 +53,14 @@ def game_start(screen):
             removed_cells = None
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_rect.collidepoint(event.pos):
-                    # Checks if mouse is on easy button
                     removed_cells = 30
-                    return  # If the mouse is on the start button, we can return to main
-                elif medium_rect.collidepoint(event.pos): # If the mouse is on the medium button, return
+                    return  # If the user clicks the easy button, return to main
+                elif medium_rect.collidepoint(event.pos):
                     removed_cells = 40
-                    return
-                elif hard_rect.collidepoint(event.pos): # If the mouse is on the hard button, return
+                    return # If the user clicks the medium button, return to main
+                elif hard_rect.collidepoint(event.pos):
                     removed_cells = 50
-                    return
+                    return # If the user clicks the hard button, return to main
 
         pygame.display.update()
 
@@ -160,9 +158,9 @@ def game_in_progress_buttons(screen):
 
             pygame.display.update()
 
-
+# displays the numbers from generate_sudoku onto the board
 def display_numbers(screen):
-    array = generate_sudoku(9, removed_cells)
+    array = generate_sudoku(9, removed_cells) # calls generate_sudoku function
     puzzle_num_font = pygame.font.Font(None, 70)
 
     row_1 = array[0][:]
@@ -264,6 +262,7 @@ def display_numbers(screen):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 520)) # position
             screen.blit(surf_number, surf_number_rect)
 
+# displays game won screen
 def game_won(screen):
     title_font = pygame.font.Font(None, 90)
     button_font = pygame.font.Font(None, 70)
@@ -282,13 +281,14 @@ def game_won(screen):
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                exit()  # stops loop
+                exit()  # stops loop if user exits out
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if exit_rect.collidepoint(event.pos):
-                    exit()  # stops loop
+                    exit()  # stops loop if user clicks on exit button
 
         pygame.display.update()
 
+# displays game over screen
 def game_over(screen):
     title_font = pygame.font.Font(None, 90)
     button_font = pygame.font.Font(None, 70)
@@ -307,9 +307,9 @@ def game_over(screen):
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                exit()  # stops loop
+                exit()  # stops loop if user exits out
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if restart_rect.collidepoint(event.pos):
+                if restart_rect.collidepoint(event.pos): # restarts the game if user clicks restart button
                     game_start(screen)
                     board.screen.fill(bg_color)
                     board.draw()
