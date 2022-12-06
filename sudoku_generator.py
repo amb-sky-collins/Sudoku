@@ -26,7 +26,6 @@ class SudokuGenerator:
     '''
     def get_board(self):
         return [[0 for row in range(self.row_length)] for column in range(self.row_length)] # row_length used twice because row will always be 9
-
     '''
 	Displays the board to the console
     This is not strictly required, but it may be useful for debugging purposes
@@ -84,7 +83,7 @@ class SudokuGenerator:
     '''
     def valid_in_box(self, row_start, col_start, num):
         i = row_start
-        j = int(col_start)
+        j = col_start
         while i < row_start + 3:
             while j < col_start + 3:
                 if self.board[i][j] == num:
@@ -371,7 +370,7 @@ class Board:
 
 """print(SudokuGenerator(1).get_board()) # TODO: RETURNS 2D LIST OF 0s FOR BOARD
 print(SudokuGenerator(1).valid_in_col(1, 0))
-print(SudokuGenerator(1).valid_in_box(1, 1, 0))
+print(SudokuGenerator(1, 40).valid_in_box(1, 1, 1))
 print(SudokuGenerator(1).is_valid(1, 1, 0)) # TODO: USE TO CHECK IF THE NUMBER IS UNUSED
 print(SudokuGenerator(1).fill_box(1, 1))
 print(SudokuGenerator(1).fill_diagonal()) # uses fill_box
