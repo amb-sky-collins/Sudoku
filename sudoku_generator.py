@@ -293,20 +293,24 @@ class Board:
         pygame.draw.line(self.screen, line_color, (square_width * 2, 0), (square_width * 2, self.width), thick_line_width)
 
         # Thinner lines - Horizontal
+        pygame.draw.line(self.screen, line_color, (0, 0), (self.width, 0), thin_line_width)
         pygame.draw.line(self.screen, line_color, (0, cell_width), (self.width, cell_width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (0, cell_width * 2), (self.width, cell_width * 2), thin_line_width)
         pygame.draw.line(self.screen, line_color, (0, cell_width * 4), (self.width, cell_width * 4), thin_line_width)
         pygame.draw.line(self.screen, line_color, (0, cell_width * 5), (self.width, cell_width * 5), thin_line_width)
         pygame.draw.line(self.screen, line_color, (0, cell_width * 7), (self.width, cell_width * 7), thin_line_width)
         pygame.draw.line(self.screen, line_color, (0, cell_width * 8), (self.width, cell_width * 8), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (0, cell_width * 9), (self.width, cell_width * 9), thin_line_width)
 
         # Thinner lines - Vertical
+        pygame.draw.line(self.screen, line_color, (0, 0), (0, self.width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (cell_width, 0), (cell_width, self.width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (cell_width * 2, 0), (cell_width * 2, self.width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (cell_width * 4, 0), (cell_width * 4, self.width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (cell_width * 5, 0), (cell_width * 5, self.width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (cell_width * 7, 0), (cell_width * 7, self.width), thin_line_width)
         pygame.draw.line(self.screen, line_color, (cell_width * 8, 0), (cell_width * 8, self.width), thin_line_width)
+        pygame.draw.line(self.screen, line_color, (cell_width * 9, 0), (cell_width * 9, self.width), thin_line_width)
 
     def select(self, row, col):
         # Draws red border around selected cell
