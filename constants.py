@@ -10,6 +10,7 @@ outline_color = (226, 25, 39)
 
 number_font = (400)
 number_color = (0, 0, 0)
+end_font = (400)
 
 
 

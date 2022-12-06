@@ -66,13 +66,7 @@ def game_start(screen):
 
         pygame.display.update()
 
-
-# Main function
-def main():
-    game_start(screen)
-    board.screen.fill(bg_color)
-    board.draw()
-
+def game_in_progress_buttons(screen):
     button_font = pygame.font.Font(None, 50)
     # Creates reset button
     reset_text = button_font.render('Reset', True, font_color)
@@ -95,9 +89,6 @@ def main():
     exit_surf.blit(exit_text, (10, 10))
     exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
     screen.blit(exit_surf, exit_rect)
-
-    generate_sudoku(9, removed_cells) # generates board
-
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -113,6 +104,85 @@ def main():
                     pass
                 elif exit_rect.collidepoint(event.pos):
                     exit()
+
+        pygame.display.update()
+
+def game_won(screen):
+    title_font = pygame.font.Font(None, 90)
+    button_font = pygame.font.Font(None, 70)
+    screen.fill(bg_color) # fills screen with background color
+    end_title = title_font.render("Game Won!", 0, line_color) # text
+    end_surf = end_title.get_rect(center=(width // 2, height // 2 - 150)) # position
+    screen.blit(end_title, end_surf)
+
+    exit_text = button_font.render("Exit", 0, (255, 255, 255)) # text
+    exit_surf = pygame.Surface((exit_text.get_size()[0] + 20, exit_text.get_size()[1] + 20))
+    exit_surf.fill(line_color)
+    exit_surf.blit(exit_text, (10, 10))
+    exit_rect = exit_surf.get_rect(center=(width // 2, height // 2 + 150)) # position
+    screen.blit(exit_surf, exit_rect)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()  # stops loop
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if exit_rect.collidepoint(event.pos):
+                    exit()  # stops loop
+
+        pygame.display.update()
+
+def game_over(screen):
+    title_font = pygame.font.Font(None, 90)
+    button_font = pygame.font.Font(None, 70)
+    screen.fill(bg_color) # fills screen with background color
+    end_title = title_font.render("Game Over :(", 0, line_color) # text
+    end_surf = end_title.get_rect(center=(width // 2, height // 2 - 150)) # position
+    screen.blit(end_title, end_surf)
+
+    restart_text = button_font.render("Restart", 0, (255, 255, 255)) # text
+    restart_surf = pygame.Surface((restart_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
+    restart_surf.fill(line_color)
+    restart_surf.blit(restart_text, (10, 10))
+    restart_rect = restart_surf.get_rect(center=(width // 2, height // 2 + 150)) # position
+    screen.blit(restart_surf, restart_rect)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()  # stops loop
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if restart_rect.collidepoint(event.pos):
+                    screen.fill(bg_color)
+                    board.draw()
+                    game_in_progress_buttons(screen)
+
+
+        pygame.display.update()
+
+
+# Main function
+def main():
+    game_start(screen)
+    board.screen.fill(bg_color)
+    board.draw()
+
+    # generate_sudoku(9, removed_cells) # generates board TODO: HOW TO DISPLAY THIS ON THE BOARD?
+
+    """
+    if the board is full and all the numbers match the solution:
+        game_won(screen)
+    elif the board is full and the numbers don't match the solution:
+        game_over(screen)
+    """
+
+    game_over(screen)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()  # removes error message when window is closed by stopping while True loop
 
         pygame.display.update()
 
