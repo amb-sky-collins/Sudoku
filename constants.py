@@ -20,3 +20,4 @@ height = 700
 bg_color = (255, 255, 246)
 button_color = (82, 182, 189)
 font_color = (255, 255, 255)
+sketch_color = (124, 124, 124)

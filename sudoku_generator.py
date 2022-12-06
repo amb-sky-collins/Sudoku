@@ -349,10 +349,26 @@ class Board:
         pass
 
     def sketch(self, value):
-        pass
+        button_font = pygame.font.Font(None, 50)
+        sketch_text = button_font.render(value, True, sketch_color)
+        sketch_surf = pygame.Surface((sketch_text.get_size()[0] + 20, sketch_text.get_size()[1] + 20))
+        sketch_surf.fill(button_color)
+        sketch_surf.blit(sketch_text, (10, 10))
+        value_rect = sketch_surf.get_rect(center=(0, 0))  # TODO: Change center
+        self.screen.blit(sketch_surf, value_rect)
 
     def place_number(self, value):
-        pass
+        # Removes sketch value
+
+
+        # Places number
+        button_font = pygame.font.Font(None, 50)
+        value_text = button_font.render(value, True, font_color)
+        value_surf = pygame.Surface((value_text.get_size()[0] + 20, value_text.get_size()[1] + 20))
+        value_surf.fill(button_color)
+        value_surf.blit(value_text, (10, 10))
+        value_rect = value_surf.get_rect(center=(0, 0))  # TODO: Change center
+        self.screen.blit(value_surf, value_rect)
 
     def reset_to_original(self):
         pass

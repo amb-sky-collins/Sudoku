@@ -90,8 +90,9 @@ def game_in_progress_buttons(screen):
     exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
     screen.blit(exit_surf, exit_rect)
 
-    prev_clicked_cell = None
     while True:
+        value = None
+        prev_clicked_cell = None
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -120,6 +121,39 @@ def game_in_progress_buttons(screen):
                     exit()
 
                 prev_clicked_cell = clicked_cell
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    value = 1
+                    board.sketch(value)
+                if event.key == pygame.K_2:
+                    value = 2
+                    board.sketch(value)
+                if event.key == pygame.K_3:
+                    value = 3
+                    board.sketch(value)
+                if event.key == pygame.K_4:
+                    value = 4
+                    board.sketch(value)
+                if event.key == pygame.K_5:
+                    value = 5
+                    board.sketch(value)
+                if event.key == pygame.K_6:
+                    value = 6
+                    board.sketch(value)
+                if event.key == pygame.K_7:
+                    value = 7
+                    board.sketch(value)
+                if event.key == pygame.K_8:
+                    value = 8
+                    board.sketch(value)
+                if event.key == pygame.K_9:
+                    value = 9
+                    board.sketch(value)
+                if (event.key == pygame.K_KP_ENTER) and (value is not None):
+                    board.place_number(value)
+                if event.key == pygame.K_BACKSPACE:
+                    board.clear()
 
         pygame.display.update()
         return
