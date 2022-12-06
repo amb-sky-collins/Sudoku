@@ -89,6 +89,8 @@ def game_in_progress_buttons(screen):
     exit_surf.blit(exit_text, (10, 10))
     exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
     screen.blit(exit_surf, exit_rect)
+
+    prev_clicked_cell = None
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -97,13 +99,24 @@ def game_in_progress_buttons(screen):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = event.pos  # Determines coordinates of cell being clicked
                 clicked_cell = board.click(x, y)  # Determines the row and col of the cell being clicked
-                board.select(clicked_cell[0], clicked_cell[1])
+
+                # Selects cell, deselects previous cell if new cell is selected
+                if prev_clicked_cell is None:
+                    board.select(clicked_cell[0], clicked_cell[1])
+                elif prev_clicked_cell == clicked_cell:
+                    pass
+                else:
+                    board.deselect(prev_clicked_cell[0], prev_clicked_cell[1])
+                    board.select(clicked_cell[0], clicked_cell[1])
+
                 if reset_rect.collidepoint(event.pos):
                     pass
                 elif restart_rect.collidepoint(event.pos):
                     pass
                 elif exit_rect.collidepoint(event.pos):
                     exit()
+
+                prev_clicked_cell = clicked_cell
 
         pygame.display.update()
 
