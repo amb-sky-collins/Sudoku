@@ -13,11 +13,11 @@ class SudokuGenerator:
 	None
     '''
 
-    def __init__(self, removed_cells, row_length=9):
+    def __init__(self, row_length, removed_cells):
         self.row_length = row_length # number of rows/columns always = 9
-        self.removed_cells = int(removed_cells)
+        self.removed_cells = removed_cells
         self.board = self.get_board()
-        self.box_length = math.sqrt(row_length)
+        self.box_length = int(math.sqrt(row_length))
 
     '''
 	Returns a 2D python list of numbers which represents the board
@@ -377,6 +377,6 @@ print(SudokuGenerator(1).fill_box(1, 1))
 print(SudokuGenerator(1).fill_diagonal()) # uses fill_box
 print(SudokuGenerator(1).fill_remaining(1, 1)) # uses fill_box
 print(SudokuGenerator(1).fill_values(1, 1)) # TODO: USE TO FILL DIAGONAL AND REMAINING
-print(SudokuGenerator(1).remove_cells()) # TODO: USE AFTER FILL_VALUES TO GENERATE PUZZLE
+print(SudokuGenerator(1).remove_cells()) # TODO: USE AFTER FILL_VALUES TO GENERATE PUZZLE"""
 
-print(generate_sudoku(1, 1))"""
+# print(generate_sudoku(9, 9))
