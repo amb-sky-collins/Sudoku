@@ -67,96 +67,97 @@ def game_start(screen):
         pygame.display.update()
 
 def game_in_progress_buttons(screen):
-    button_font = pygame.font.Font(None, 50)
-    # Creates reset button
-    reset_text = button_font.render('Reset', True, font_color)
-    reset_surf = pygame.Surface((reset_text.get_size()[0] + 20, reset_text.get_size()[1] + 20))
-    reset_surf.fill(button_color)
-    reset_surf.blit(reset_text, (10, 10))
-    reset_rect = reset_surf.get_rect(center=(width // 3 - 75, height // 2 + 315))
-    screen.blit(reset_surf, reset_rect)
-    # Creates restart button
-    restart_text = button_font.render('Restart', True, font_color)
-    restart_surf = pygame.Surface((restart_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
-    restart_surf.fill(button_color)
-    restart_surf.blit(restart_text, (10, 10))
-    restart_rect = restart_surf.get_rect(center=(width // 3 + 110, height // 2 + 315))
-    screen.blit(restart_surf, restart_rect)
-    # Creates exit button
-    exit_text = button_font.render('Exit', True, font_color)
-    exit_surf = pygame.Surface((exit_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
-    exit_surf.fill(button_color)
-    exit_surf.blit(exit_text, (10, 10))
-    exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
-    screen.blit(exit_surf, exit_rect)
-
     while True:
-        value = None
-        prev_clicked_cell = None
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()  # removes error message when window is closed by stopping while True loop
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                x, y = event.pos  # Determines coordinates of cell being clicked
-                clicked_cell = board.click(x, y)  # Determines the row and col of the cell being clicked
+        button_font = pygame.font.Font(None, 50)
+        # Creates reset button
+        reset_text = button_font.render('Reset', True, font_color)
+        reset_surf = pygame.Surface((reset_text.get_size()[0] + 20, reset_text.get_size()[1] + 20))
+        reset_surf.fill(button_color)
+        reset_surf.blit(reset_text, (10, 10))
+        reset_rect = reset_surf.get_rect(center=(width // 3 - 75, height // 2 + 315))
+        screen.blit(reset_surf, reset_rect)
+        # Creates restart button
+        restart_text = button_font.render('Restart', True, font_color)
+        restart_surf = pygame.Surface((restart_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
+        restart_surf.fill(button_color)
+        restart_surf.blit(restart_text, (10, 10))
+        restart_rect = restart_surf.get_rect(center=(width // 3 + 110, height // 2 + 315))
+        screen.blit(restart_surf, restart_rect)
+        # Creates exit button
+        exit_text = button_font.render('Exit', True, font_color)
+        exit_surf = pygame.Surface((exit_text.get_size()[0] + 20, restart_text.get_size()[1] + 20))
+        exit_surf.fill(button_color)
+        exit_surf.blit(exit_text, (10, 10))
+        exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
+        screen.blit(exit_surf, exit_rect)
 
-                # Selects cell, deselects previous cell if new cell is selected
-                if prev_clicked_cell is None:
-                    board.select(clicked_cell[0], clicked_cell[1])
-                elif prev_clicked_cell == clicked_cell:
-                    pass
-                else:
-                    board.deselect(prev_clicked_cell[0], prev_clicked_cell[1])
-                    board.select(clicked_cell[0], clicked_cell[1])
+        while True:
+            value = None
+            prev_clicked_cell = None
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()  # removes error message when window is closed by stopping while True loop
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    x, y = event.pos  # Determines coordinates of cell being clicked
+                    clicked_cell = board.click(x, y)  # Determines the row and col of the cell being clicked
 
-                if reset_rect.collidepoint(event.pos):
-                    pass
-                elif restart_rect.collidepoint(event.pos):
-                    game_start(screen)
-                    board.screen.fill(bg_color)
-                    board.draw()
-                    game_in_progress_buttons(screen)
-                elif exit_rect.collidepoint(event.pos):
-                    exit()
+                    # Selects cell, deselects previous cell if new cell is selected
+                    if prev_clicked_cell is None:
+                        board.select(clicked_cell[0], clicked_cell[1])
+                    elif prev_clicked_cell == clicked_cell:
+                        pass
+                    else:
+                        board.deselect(prev_clicked_cell[0], prev_clicked_cell[1])
+                        board.select(clicked_cell[0], clicked_cell[1])
 
-                prev_clicked_cell = clicked_cell
+                    if reset_rect.collidepoint(event.pos):
+                        pass
+                    elif restart_rect.collidepoint(event.pos):
+                        game_start(screen)
+                        board.screen.fill(bg_color)
+                        board.draw()
+                        display_numbers(screen)
+                        game_in_progress_buttons(screen)
+                    elif exit_rect.collidepoint(event.pos):
+                        exit()
 
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
-                    value = 1
-                    board.sketch(value)
-                if event.key == pygame.K_2:
-                    value = 2
-                    board.sketch(value)
-                if event.key == pygame.K_3:
-                    value = 3
-                    board.sketch(value)
-                if event.key == pygame.K_4:
-                    value = 4
-                    board.sketch(value)
-                if event.key == pygame.K_5:
-                    value = 5
-                    board.sketch(value)
-                if event.key == pygame.K_6:
-                    value = 6
-                    board.sketch(value)
-                if event.key == pygame.K_7:
-                    value = 7
-                    board.sketch(value)
-                if event.key == pygame.K_8:
-                    value = 8
-                    board.sketch(value)
-                if event.key == pygame.K_9:
-                    value = 9
-                    board.sketch(value)
-                if (event.key == pygame.K_KP_ENTER) and (value is not None):
-                    board.place_number(value)
-                if event.key == pygame.K_BACKSPACE:
-                    board.clear()
+                    prev_clicked_cell = clicked_cell
 
-        pygame.display.update()
-        return
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_1:
+                        value = 1
+                        board.sketch(value)
+                    if event.key == pygame.K_2:
+                        value = 2
+                        board.sketch(value)
+                    if event.key == pygame.K_3:
+                        value = 3
+                        board.sketch(value)
+                    if event.key == pygame.K_4:
+                        value = 4
+                        board.sketch(value)
+                    if event.key == pygame.K_5:
+                        value = 5
+                        board.sketch(value)
+                    if event.key == pygame.K_6:
+                        value = 6
+                        board.sketch(value)
+                    if event.key == pygame.K_7:
+                        value = 7
+                        board.sketch(value)
+                    if event.key == pygame.K_8:
+                        value = 8
+                        board.sketch(value)
+                    if event.key == pygame.K_9:
+                        value = 9
+                        board.sketch(value)
+                    if (event.key == pygame.K_KP_ENTER) and (value is not None):
+                        board.place_number(value)
+                    if event.key == pygame.K_BACKSPACE:
+                        board.clear()
+
+            pygame.display.update()
 
 
 def display_numbers(screen):
@@ -322,8 +323,8 @@ def main():
     game_start(screen)
     board.screen.fill(bg_color)
     board.draw()
-    game_in_progress_buttons(screen)
     display_numbers(screen)
+    game_in_progress_buttons(screen)
 
 
     """
