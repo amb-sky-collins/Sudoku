@@ -96,9 +96,8 @@ def main():
     exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
     screen.blit(exit_surf, exit_rect)
 
-    """print(SudokuGenerator(row_length, removed_cells).get_board())
-    print(SudokuGenerator(row_length, removed_cells).fill_values())
-    print(SudokuGenerator(row_length, removed_cells).remove_cells())""" # TODO: HOW TO PRINT THE NUMBERS ONTO THE BOARD?
+    generate_sudoku(9, removed_cells) # generates board
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
