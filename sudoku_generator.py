@@ -346,6 +346,7 @@ class Board:
         return row, col
 
     def clear(self):
+        # Clears value in cell by creating empty cell
         pass
 
     def sketch(self, value):
@@ -354,12 +355,12 @@ class Board:
         sketch_surf = pygame.Surface((sketch_text.get_size()[0] + 20, sketch_text.get_size()[1] + 20))
         sketch_surf.fill(button_color)
         sketch_surf.blit(sketch_text, (10, 10))
-        value_rect = sketch_surf.get_rect(center=(0, 0))  # TODO: Change center
-        self.screen.blit(sketch_surf, value_rect)
+        sketch_rect = sketch_surf.get_rect(center=(0, 0))  # TODO: Change center
+        self.screen.blit(sketch_surf, sketch_rect)
 
     def place_number(self, value):
         # Removes sketch value
-
+        self.board.clear()
 
         # Places number
         button_font = pygame.font.Font(None, 50)

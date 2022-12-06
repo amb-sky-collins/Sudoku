@@ -66,7 +66,8 @@ def game_start(screen):
 
         pygame.display.update()
 
-def game_in_progress_buttons(screen):
+
+def game_in_progress_buttons(screen, value, prev_clicked_cell):
     while True:
         button_font = pygame.font.Font(None, 50)
         # Creates reset button
@@ -92,8 +93,6 @@ def game_in_progress_buttons(screen):
         screen.blit(exit_surf, exit_rect)
 
         while True:
-            value = None
-            prev_clicked_cell = None
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -324,7 +323,10 @@ def main():
     board.screen.fill(bg_color)
     board.draw()
     display_numbers(screen)
-    game_in_progress_buttons(screen)
+
+    value = None
+    prev_clicked_cell = None
+    game_in_progress_buttons(screen, value, prev_clicked_cell)
 
 
     """
