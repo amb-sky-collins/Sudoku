@@ -96,7 +96,7 @@ def main():
     exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
     screen.blit(exit_surf, exit_rect)
 
-    generate_sudoku(9, removed_cells) # generates board
+    generate_sudoku(removed_cells, 9) # generates board
 
     while True:
         for event in pygame.event.get():

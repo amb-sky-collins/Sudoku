@@ -83,15 +83,10 @@ class SudokuGenerator:
 	Return: boolean
     '''
     def valid_in_box(self, row_start, col_start, num):
-        i = row_start
-        j = int(col_start)
-        while i < row_start + 3:
-            while j < col_start + 3:
-                if self.board[i][j] == num:
+        for row in range(row_start, row_start + 3, 1):
+            for col in range(col_start, col_start + 3, 1):
+                if self.board[row][col] == num:
                     return False
-                j += 1
-            i += 1
-            j = col_start
         return True
 
     '''
@@ -121,19 +116,14 @@ class SudokuGenerator:
     '''
     def fill_box(self, row_start, col_start):
         digits_for_use = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        i = row_start
-        j = col_start
-        while i < row_start + 3:
-            while j < col_start + 3:
+        for row in range(row_start, row_start + 3):
+            for col in range(col_start, col_start + 3):
                 number = random.randint(1, 9)
                 if number in digits_for_use:
                     number = random.randint(1, 9)
                 else:
-                    self.board[i][j] = number
+                    self.board[row][col] = number
                     digits_for_use.remove(number)
-                j += 1
-            i += 1
-            j = col_start
 
     '''
     Fills the three boxes along the main diagonal of the board
@@ -210,7 +200,7 @@ class SudokuGenerator:
 	Return: None
     '''
     def remove_cells(self):
-        cells_to_remove = 64  # research: sudoku must have 17 clues to have a valid solution
+        cells_to_remove = self.removed_cells
         for cell in range(cells_to_remove):
             # pick random cell
             i = random.randint(0, 8)
