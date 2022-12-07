@@ -117,7 +117,7 @@ def game_in_progress_buttons(screen, cells):
                         board.select(clicked_cell[0], clicked_cell[1])
 
                     if reset_rect.collidepoint(event.pos):
-                        pass
+                        board.reset_to_original(cells)
                     elif restart_rect.collidepoint(event.pos):
                         game_start(screen)
                         board.screen.fill(bg_color)
@@ -210,7 +210,6 @@ def display_numbers(screen, cells):
     row_1 = array[0][:]
     for number in row_1:
         string_number = str(number)
-        print(string_number)
         if number == 0:
             i += 1
             pass
@@ -408,8 +407,8 @@ def main():
     board.screen.fill(bg_color)
     board.draw()
     display_numbers(screen, cells)
+    '''print(cells)'''
     game_in_progress_buttons(screen, cells)
-
 
     """
     if the board is full and all the numbers match the solution:

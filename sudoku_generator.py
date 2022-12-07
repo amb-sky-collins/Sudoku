@@ -406,8 +406,16 @@ class Board:
     def set_col(self, col):
         self.col = col
 
-    def reset_to_original(self):
-        pass
+    def reset_to_original(self, cells):
+        for i in range(9):
+            for j in range(9):
+                if cells[i][j] == -1:
+                    pass
+                else:
+                    cell_surf = pygame.Surface((50, 50))
+                    cell_surf.fill(bg_color)
+                    cell_rect = cell_surf.get_rect(center=((j * cell_width) + 35, (i * cell_width) + 35))
+                    self.screen.blit(cell_surf, cell_rect)
 
     def is_full(self):
         if self.find_empty() is None:
