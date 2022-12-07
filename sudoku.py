@@ -137,6 +137,7 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 1
                             cells[row][col] = 1
+                            cells2[row][col] = 1
                             board.sketch(value)
                     if event.key == pygame.K_2:
                         if cells[row][col] == -1:
@@ -144,6 +145,7 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 2
                             cells[row][col] = 2
+                            cells2[row][col] = 2
                             board.sketch(value)
                     if event.key == pygame.K_3:
                         if cells[row][col] == -1:
@@ -151,6 +153,7 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 3
                             cells[row][col] = 3
+                            cells2[row][col] = 3
                             board.sketch(value)
                     if event.key == pygame.K_4:
                         if cells[row][col] == -1:
@@ -158,6 +161,7 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 4
                             cells[row][col] = 4
+                            cells2[row][col] = 4
                             board.sketch(value)
                     if event.key == pygame.K_5:
                         if cells[row][col] == -1:
@@ -165,6 +169,7 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 5
                             cells[row][col] = 5
+                            cells2[row][col] = 5
                             board.sketch(value)
                     if event.key == pygame.K_6:
                         if cells[row][col] == -1:
@@ -172,6 +177,7 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 6
                             cells[row][col] = 6
+                            cells2[row][col] = 6
                             board.sketch(value)
                     if event.key == pygame.K_7:
                         if cells[row][col] == -1:
@@ -179,6 +185,7 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 7
                             cells[row][col] = 7
+                            cells2[row][col] = 7
                             board.sketch(value)
                     if event.key == pygame.K_8:
                         if cells[row][col] == -1:
@@ -186,6 +193,7 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 8
                             cells[row][col] = 8
+                            cells2[row][col] = 8
                             board.sketch(value)
                     if event.key == pygame.K_9:
                         if cells[row][col] == -1:
@@ -193,16 +201,17 @@ def game_in_progress_buttons(screen, cells, cells2, sudoku):
                         else:
                             value = 9
                             cells[row][col] = 9
+                            cells2[row][col] = 9
                             board.sketch(value)
                     if (event.key == pygame.K_RETURN) and (value is not None) and (value != 0) and (cells[row][col] != -1):
                         board.place_number(cells[clicked_cell[0]][clicked_cell[1]])
-                        cells2[row][col] = cells[clicked_cell[0]][clicked_cell[1]]
                     if event.key == pygame.K_BACKSPACE:
                         if cells[row][col] == -1:
                             pass
                         else:
                             board.clear()
 
+                    '''print(cells2)'''
                     full = board.is_full(cells)
                     '''print(full)'''
                     if full is True:

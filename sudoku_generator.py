@@ -1,6 +1,7 @@
 import math
 import random
 import pygame
+import copy
 # from constants import *
 
 # these are all the variables from constants.py.
@@ -253,7 +254,7 @@ Return: list[list] (a 2D Python list to represent the board)
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
-    completed = sudoku.get_board()
+    completed = copy.deepcopy(sudoku.get_board())
     '''print(completed)'''
     board = sudoku.get_board()
     sudoku.remove_cells()
