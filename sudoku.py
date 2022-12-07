@@ -67,7 +67,7 @@ def game_start(screen):
         pygame.display.update()
 
 
-def game_in_progress_buttons(screen):
+def game_in_progress_buttons(screen, cells):
     while True:
         button_font = pygame.font.Font(None, 50)
         # Creates reset button
@@ -92,7 +92,6 @@ def game_in_progress_buttons(screen):
         exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
         screen.blit(exit_surf, exit_rect)
 
-        cells = board.initialize_board()
         value = None
         prev_clicked_cell = None
         while True:
@@ -132,41 +131,68 @@ def game_in_progress_buttons(screen):
 
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_1:
-                        value = 1
-                        cells[row][col] = 1
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 1
+                            cells[row][col] = 1
+                            board.sketch(value)
                     if event.key == pygame.K_2:
-                        value = 2
-                        cells[row][col] = 2
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 2
+                            cells[row][col] = 2
+                            board.sketch(value)
                     if event.key == pygame.K_3:
-                        value = 3
-                        cells[row][col] = 3
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 3
+                            cells[row][col] = 3
+                            board.sketch(value)
                     if event.key == pygame.K_4:
-                        value = 4
-                        cells[row][col] = 4
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 4
+                            cells[row][col] = 4
+                            board.sketch(value)
                     if event.key == pygame.K_5:
-                        value = 5
-                        cells[row][col] = 5
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 5
+                            cells[row][col] = 5
+                            board.sketch(value)
                     if event.key == pygame.K_6:
-                        value = 6
-                        cells[row][col] = 6
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 6
+                            cells[row][col] = 6
+                            board.sketch(value)
                     if event.key == pygame.K_7:
-                        value = 7
-                        cells[row][col] = 7
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 7
+                            cells[row][col] = 7
+                            board.sketch(value)
                     if event.key == pygame.K_8:
-                        value = 8
-                        cells[row][col] = 8
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 8
+                            cells[row][col] = 8
+                            board.sketch(value)
                     if event.key == pygame.K_9:
-                        value = 9
-                        cells[row][col] = 9
-                        board.sketch(value)
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            value = 9
+                            cells[row][col] = 9
+                            board.sketch(value)
                     if (event.key == pygame.K_RETURN) and (value is not None):
                         board.place_number(cells[clicked_cell[0]][clicked_cell[1]])
                     if event.key == pygame.K_BACKSPACE:
@@ -176,108 +202,146 @@ def game_in_progress_buttons(screen):
 
 
 # displays the numbers from generate_sudoku onto the board
-def display_numbers(screen):
+def display_numbers(screen, cells):
     array = generate_sudoku(9, removed_cells)  # calls generate_sudoku function
     puzzle_num_font = pygame.font.Font(None, 60)
 
+    i = 0
     row_1 = array[0][:]
     for number in row_1:
         string_number = str(number)
+        print(string_number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_1.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 - 40)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[0][i] = -1
+            i += 1
 
+    i = 0
     row_2 = array[1][:]
     for number in row_2:
         string_number = str(number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_2.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 35)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[1][i] = -1
+            i += 1
 
+    i = 0
     row_3 = array[2][:]
     for number in row_3:
         string_number = str(number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_3.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 100)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[2][i] = -1
+            i += 1
 
+    i = 0
     row_4 = array[3][:]
     for number in row_4:
         string_number = str(number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_4.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 175)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[3][i] = -1
+            i += 1
 
+    i = 0
     row_5 = array[4][:]
     for number in row_5:
         string_number = str(number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_5.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 240)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[4][i] = -1
+            i += 1
 
+    i = 0
     row_6 = array[5][:]
     for number in row_6:
         string_number = str(number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_6.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 310)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[5][i] = -1
+            i += 1
 
+    i = 0
     row_7 = array[6][:]
     for number in row_7:
         string_number = str(number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_7.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 385)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[6][i] = -1
+            i += 1
 
+    i = 0
     row_8 = array[7][:]
     for number in row_8:
         string_number = str(number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_8.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 450)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[7][i] = -1
+            i += 1
 
+    i = 0
     row_9 = array[8][:]
     for number in row_9:
         string_number = str(number)
         if number == 0:
+            i += 1
             pass
         else:
             surf_number = puzzle_num_font.render(string_number, 0, line_color)  # text
             next = row_9.index(number) * 70
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 520)) # position
             screen.blit(surf_number, surf_number_rect)
+            cells[8][i] = -1
+            i += 1
+
 
 # displays game won screen
 def game_won(screen):
@@ -338,11 +402,13 @@ def game_over(screen):
 
 # Main function
 def main():
+    cells = board.initialize_board()
+
     game_start(screen)
     board.screen.fill(bg_color)
     board.draw()
-    display_numbers(screen)
-    game_in_progress_buttons(screen)
+    display_numbers(screen, cells)
+    game_in_progress_buttons(screen, cells)
 
 
     """
