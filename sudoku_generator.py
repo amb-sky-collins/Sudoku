@@ -232,6 +232,7 @@ class SudokuGenerator:
                 j = random.randint(0, 8)  # select new column
             self.board[i][j] = 0  # otherwise, set cell equal to zero
 
+
 '''
 DO NOT CHANGE
 Provided for students
@@ -247,6 +248,8 @@ removed is the number of cells to clear (set to 0)
 
 Return: list[list] (a 2D Python list to represent the board)
 '''
+
+
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
@@ -302,8 +305,10 @@ class Board:
         self.difficulty = difficulty
         self.board = self.initialize_board()
         self.cells = [[Cell(self.board[i][j], i, j, self.screen) for j in range(col)] for i in range(row)]
+
     def initialize_board(self):
         return [[0 for i in range(9)] for j in range(9)]
+
     def draw(self):
         # Thicker lines - Horizontal
         pygame.draw.line(self.screen, line_color, (0, square_width), (self.width, square_width), thick_line_width)
@@ -411,7 +416,7 @@ class Board:
             return False
 
     def update_board(self):
-        self.cells = [[Cell(self.board[i][j], i, j, self.screen) for j in range(self.col)] for i in range(self.row)]
+        self.cells = [[Cell(self.board[i][j], i, j, 630, 700, self.screen) for j in range(self.col)] for i in range(self.row)]
 
     def find_empty(self):
         pass
@@ -433,8 +438,8 @@ print(SudokuGenerator(1).fill_remaining(1, 1)) # uses fill_box
 print(SudokuGenerator(1).fill_values(1, 1)) # TODO: USE TO FILL DIAGONAL AND REMAINING
 print(SudokuGenerator(1).remove_cells()) # TODO: USE AFTER FILL_VALUES TO GENERATE PUZZLE"""
 
-test = generate_sudoku(9, 30)
+'''test = generate_sudoku(9, 30)
 for row in test:
     for element in row:
         print(element, end = " ")
-    print()
+    print()'''

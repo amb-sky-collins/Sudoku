@@ -1,3 +1,4 @@
+import sudoku_generator
 from sudoku_generator import *
 from sys import *
 import pygame
@@ -91,6 +92,7 @@ def game_in_progress_buttons(screen):
         exit_rect = exit_surf.get_rect(center=(width // 3 + 290, height // 2 + 315))
         screen.blit(exit_surf, exit_rect)
 
+        cells = board.initialize_board()
         value = None
         prev_clicked_cell = None
         while True:
@@ -103,6 +105,8 @@ def game_in_progress_buttons(screen):
                     clicked_cell = board.click(x, y)  # Determines the row and col of the cell being clicked
                     board.set_row(clicked_cell[0])
                     board.set_col(clicked_cell[1])
+                    row = clicked_cell[0]
+                    col = clicked_cell[1]
 
                     # Selects cell, deselects previous cell if new cell is selected
                     if prev_clicked_cell is None:
@@ -129,41 +133,51 @@ def game_in_progress_buttons(screen):
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_1:
                         value = 1
+                        cells[row][col] = 1
                         board.sketch(value)
                     if event.key == pygame.K_2:
                         value = 2
+                        cells[row][col] = 2
                         board.sketch(value)
                     if event.key == pygame.K_3:
                         value = 3
+                        cells[row][col] = 3
                         board.sketch(value)
                     if event.key == pygame.K_4:
                         value = 4
+                        cells[row][col] = 4
                         board.sketch(value)
                     if event.key == pygame.K_5:
                         value = 5
+                        cells[row][col] = 5
                         board.sketch(value)
                     if event.key == pygame.K_6:
                         value = 6
+                        cells[row][col] = 6
                         board.sketch(value)
                     if event.key == pygame.K_7:
                         value = 7
+                        cells[row][col] = 7
                         board.sketch(value)
                     if event.key == pygame.K_8:
                         value = 8
+                        cells[row][col] = 8
                         board.sketch(value)
                     if event.key == pygame.K_9:
                         value = 9
+                        cells[row][col] = 9
                         board.sketch(value)
                     if (event.key == pygame.K_RETURN) and (value is not None):
-                        board.place_number(value)
+                        board.place_number(cells[clicked_cell[0]][clicked_cell[1]])
                     if event.key == pygame.K_BACKSPACE:
                         board.clear()
 
             pygame.display.update()
 
+
 # displays the numbers from generate_sudoku onto the board
 def display_numbers(screen):
-    array = generate_sudoku(9, removed_cells) # calls generate_sudoku function
+    array = generate_sudoku(9, removed_cells)  # calls generate_sudoku function
     puzzle_num_font = pygame.font.Font(None, 60)
 
     row_1 = array[0][:]
