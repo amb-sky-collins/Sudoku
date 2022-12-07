@@ -196,7 +196,10 @@ def game_in_progress_buttons(screen, cells):
                     if (event.key == pygame.K_RETURN) and (value is not None):
                         board.place_number(cells[clicked_cell[0]][clicked_cell[1]])
                     if event.key == pygame.K_BACKSPACE:
-                        board.clear()
+                        if cells[row][col] == -1:
+                            pass
+                        else:
+                            board.clear()
 
             pygame.display.update()
 
