@@ -1,7 +1,30 @@
 import math
 import random
 import pygame
-from constants import *
+# from constants import *
+
+# these are all the variables from constants.py.
+square_width = 210
+cell_width = 70
+bg_color = (255, 255, 245)
+line_color = (0, 0, 0)
+thick_line_width = 10
+thin_line_width = 2
+outline_color = (226, 25, 39)
+
+number_font = (400)
+number_color = (0, 0, 0)
+end_font = (400)
+
+
+
+# Variables
+width = 630
+height = 700
+bg_color = (255, 255, 246)
+button_color = (82, 182, 189)
+font_color = (255, 255, 255)
+sketch_color = (124, 124, 124)
 
 
 class SudokuGenerator:
@@ -64,8 +87,7 @@ class SudokuGenerator:
 	Return: boolean
     '''
     def valid_in_col(self, col, num):
-        col = int(col)
-        for space in range(len(self.board) - 1):
+        for space in range(len(self.board)):
             if self.board[space][col] == num:
                 return False
         return True
@@ -205,10 +227,10 @@ class SudokuGenerator:
             i = random.randint(0, 8)
             j = random.randint(0, 8)
 
-            if self.board[i][j] == 0:  # if the cell is already zero:
-                continue               # move on to the next cell
-            else:                      # otherwise:
-                self.board[i][j] = 0   # set that cell equal to zero
+            while self.board[i][j] == 0:  # if the cell is already zero:
+                i = random.randint(0, 8)  # select new row
+                j = random.randint(0, 8)  # select new column
+            self.board[i][j] = 0  # otherwise, set cell equal to zero
 
 '''
 DO NOT CHANGE
@@ -402,3 +424,9 @@ print(SudokuGenerator(1).fill_diagonal()) # uses fill_box
 print(SudokuGenerator(1).fill_remaining(1, 1)) # uses fill_box
 print(SudokuGenerator(1).fill_values(1, 1)) # TODO: USE TO FILL DIAGONAL AND REMAINING
 print(SudokuGenerator(1).remove_cells()) # TODO: USE AFTER FILL_VALUES TO GENERATE PUZZLE"""
+
+test = generate_sudoku(9, 30)
+for row in test:
+    for element in row:
+        print(element, end = " ")
+    print()
