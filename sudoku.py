@@ -119,11 +119,12 @@ def game_in_progress_buttons(screen, cells):
                     if reset_rect.collidepoint(event.pos):
                         board.reset_to_original(cells)
                     elif restart_rect.collidepoint(event.pos):
-                        game_start(screen)
+                        main()
+                        '''game_start(screen)
                         board.screen.fill(bg_color)
                         board.draw()
-                        display_numbers(screen)
-                        game_in_progress_buttons(screen)
+                        display_numbers(screen, cells)
+                        game_in_progress_buttons(screen, cells)'''
                     elif exit_rect.collidepoint(event.pos):
                         exit()
 
@@ -193,7 +194,7 @@ def game_in_progress_buttons(screen, cells):
                             value = 9
                             cells[row][col] = 9
                             board.sketch(value)
-                    if (event.key == pygame.K_RETURN) and (value is not None):
+                    if (event.key == pygame.K_RETURN) and (value is not None) and (value != 0) and (value != -1):
                         board.place_number(cells[clicked_cell[0]][clicked_cell[1]])
                     if event.key == pygame.K_BACKSPACE:
                         if cells[row][col] == -1:
