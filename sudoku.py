@@ -67,7 +67,7 @@ def game_start(screen):
         pygame.display.update()
 
 
-def game_in_progress_buttons(screen, cells):
+def game_in_progress_buttons(screen, cells, cells2, sudoku):
     while True:
         button_font = pygame.font.Font(None, 50)
         # Creates reset button
@@ -194,8 +194,9 @@ def game_in_progress_buttons(screen, cells):
                             value = 9
                             cells[row][col] = 9
                             board.sketch(value)
-                    if (event.key == pygame.K_RETURN) and (value is not None) and (value != 0) and (value != -1):
+                    if (event.key == pygame.K_RETURN) and (value is not None) and (value != 0) and (cells[row][col] != -1):
                         board.place_number(cells[clicked_cell[0]][clicked_cell[1]])
+                        cells2[row][col] = cells[clicked_cell[0]][clicked_cell[1]]
                     if event.key == pygame.K_BACKSPACE:
                         if cells[row][col] == -1:
                             pass
@@ -204,13 +205,19 @@ def game_in_progress_buttons(screen, cells):
 
                     full = board.is_full(cells)
                     '''print(full)'''
+                    if full is True:
+                        win = board.check_board(cells2, sudoku)
+                        if win is True:
+                            game_won(screen)
+                        else:
+                            game_over(screen)
 
             pygame.display.update()
 
 
 # displays the numbers from generate_sudoku onto the board
-def display_numbers(screen, cells):
-    array = generate_sudoku(9, removed_cells)  # calls generate_sudoku function
+def display_numbers(screen, cells, cells2):
+    array, sudoku = generate_sudoku(9, removed_cells)  # calls generate_sudoku
     puzzle_num_font = pygame.font.Font(None, 60)
 
     i = 0
@@ -226,6 +233,7 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 - 40)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[0][i] = -1
+            cells2[0][i] = number
             i += 1
 
     i = 0
@@ -241,6 +249,7 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 35)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[1][i] = -1
+            cells2[1][i] = number
             i += 1
 
     i = 0
@@ -256,6 +265,7 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 100)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[2][i] = -1
+            cells2[2][i] = number
             i += 1
 
     i = 0
@@ -271,6 +281,7 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 175)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[3][i] = -1
+            cells2[3][i] = number
             i += 1
 
     i = 0
@@ -286,6 +297,7 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 240)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[4][i] = -1
+            cells2[4][i] = number
             i += 1
 
     i = 0
@@ -301,6 +313,7 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 310)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[5][i] = -1
+            cells2[5][i] = number
             i += 1
 
     i = 0
@@ -316,6 +329,7 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 385)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[6][i] = -1
+            cells2[6][i] = number
             i += 1
 
     i = 0
@@ -331,6 +345,7 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 450)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[7][i] = -1
+            cells2[7][i] = number
             i += 1
 
     i = 0
@@ -346,7 +361,10 @@ def display_numbers(screen, cells):
             surf_number_rect = surf_number.get_rect(center=((width // 9 - 35) + next, height // 9 + 520)) # position
             screen.blit(surf_number, surf_number_rect)
             cells[8][i] = -1
+            cells2[8][i] = number
             i += 1
+
+    return sudoku
 
 
 # displays game won screen
@@ -397,10 +415,7 @@ def game_over(screen):
                 exit()  # stops loop if user exits out
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if restart_rect.collidepoint(event.pos): # restarts the game if user clicks restart button
-                    game_start(screen)
-                    board.screen.fill(bg_color)
-                    board.draw()
-                    game_in_progress_buttons(screen)
+                    main()
 
 
         pygame.display.update()
@@ -409,13 +424,14 @@ def game_over(screen):
 # Main function
 def main():
     cells = board.initialize_board()
+    cells2 = board.initialize_board()
 
     game_start(screen)
     board.screen.fill(bg_color)
     board.draw()
-    display_numbers(screen, cells)
-    '''print(cells)'''
-    game_in_progress_buttons(screen, cells)
+    sudoku = display_numbers(screen, cells, cells2)
+    '''print(sudoku)'''
+    game_in_progress_buttons(screen, cells, cells2, sudoku)
 
     """
     if the board is full and all the numbers match the solution:

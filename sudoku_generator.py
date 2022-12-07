@@ -1,6 +1,7 @@
 import math
 import random
 import pygame
+from copy import copy
 # from constants import *
 
 # these are all the variables from constants.py.
@@ -253,10 +254,13 @@ Return: list[list] (a 2D Python list to represent the board)
 def generate_sudoku(size, removed):
     sudoku = SudokuGenerator(size, removed)
     sudoku.fill_values()
+    completed = sudoku.copy.get_board()
+    '''print(completed)'''
     board = sudoku.get_board()
     sudoku.remove_cells()
+    '''print(completed)'''
     board = sudoku.get_board()
-    return board
+    return board, completed
 
 
 # recommended class
@@ -442,10 +446,11 @@ class Board:
         else:
             return row, col
 
-    def check_board(self):
-        pass
-
-
+    def check_board(self, cells2, sudoku):
+        if cells2 == sudoku:
+            return True
+        else:
+            return False
 
 # ignore these, just using them to see their outputs
 
