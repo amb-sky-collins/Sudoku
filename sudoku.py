@@ -102,6 +102,8 @@ def game_in_progress_buttons(screen):
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x, y = event.pos  # Determines coordinates of cell being clicked
                     clicked_cell = board.click(x, y)  # Determines the row and col of the cell being clicked
+                    board.set_row(clicked_cell[0])
+                    board.set_col(clicked_cell[1])
 
                     # Selects cell, deselects previous cell if new cell is selected
                     if prev_clicked_cell is None:
