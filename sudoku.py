@@ -202,6 +202,9 @@ def game_in_progress_buttons(screen, cells):
                         else:
                             board.clear()
 
+                    full = board.is_full(cells)
+                    '''print(full)'''
+
             pygame.display.update()
 
 

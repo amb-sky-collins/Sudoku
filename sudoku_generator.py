@@ -417,8 +417,8 @@ class Board:
                     cell_rect = cell_surf.get_rect(center=((j * cell_width) + 35, (i * cell_width) + 35))
                     self.screen.blit(cell_surf, cell_rect)
 
-    def is_full(self):
-        if self.find_empty() is None:
+    def is_full(self, cells):
+        if self.find_empty(cells) is None:
             return True
         else:
             return False
@@ -426,8 +426,21 @@ class Board:
     def update_board(self):
         self.cells = [[Cell(self.board[i][j], i, j, 630, 700, self.screen) for j in range(self.col)] for i in range(self.row)]
 
-    def find_empty(self):
-        pass
+    def find_empty(self, cells):
+        row = None
+        col = None
+
+        for i in range(9):
+            for j in range(9):
+                if cells[i][j] == 0:
+                    row = i
+                    col = j
+                    break
+
+        if row is None:
+            return None
+        else:
+            return row, col
 
     def check_board(self):
         pass
