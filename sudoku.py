@@ -154,7 +154,7 @@ def game_in_progress_buttons(screen):
                     if event.key == pygame.K_9:
                         value = 9
                         board.sketch(value)
-                    if (event.key == pygame.K_KP_ENTER) and (value is not None):
+                    if (event.key == pygame.K_RETURN) and (value is not None):
                         board.place_number(value)
                     if event.key == pygame.K_BACKSPACE:
                         board.clear()
@@ -164,7 +164,7 @@ def game_in_progress_buttons(screen):
 # displays the numbers from generate_sudoku onto the board
 def display_numbers(screen):
     array = generate_sudoku(9, removed_cells) # calls generate_sudoku function
-    puzzle_num_font = pygame.font.Font(None, 70)
+    puzzle_num_font = pygame.font.Font(None, 60)
 
     row_1 = array[0][:]
     for number in row_1:

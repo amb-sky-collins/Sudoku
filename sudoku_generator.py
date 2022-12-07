@@ -374,7 +374,7 @@ class Board:
         self.screen.blit(cell_surf, cell_rect)
 
     def sketch(self, value):
-        button_font = pygame.font.Font(None, 50)
+        button_font = pygame.font.Font(None, 30)
         sketch_text = button_font.render(str(value), True, sketch_color)
         sketch_surf = pygame.Surface((sketch_text.get_size()[0] + 20, sketch_text.get_size()[1] + 20))
         sketch_surf.fill(bg_color)
@@ -387,9 +387,9 @@ class Board:
         self.board.clear()
 
         # Places number
-        button_font = pygame.font.Font(None, 50)
-        value_text = button_font.render(str(value), True, font_color)
-        value_surf = pygame.Surface((value_text.get_size()[0] + 20, value_text.get_size()[1] + 20))
+        button_font = pygame.font.Font(None, 60)
+        value_text = button_font.render(str(value), True, line_color)
+        value_surf = pygame.Surface((value_text.get_size()[0] + 15, value_text.get_size()[1] + 15))
         value_surf.fill(bg_color)
         value_surf.blit(value_text, (10, 10))
         value_rect = value_surf.get_rect(center=((self.col * cell_width) + 35, (self.row * cell_width) + 35))
