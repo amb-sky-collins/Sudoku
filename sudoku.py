@@ -9,7 +9,8 @@ pygame.display.set_caption('Sudoku') # caption for that window
 board = Board(width, height, screen, row=0, col=0, difficulty=0)  # Change difficulty later
 
 
-# referred to https://youtu.be/U9H60qtw0Yg for game_start(screen) method
+"""referred to https://youtu.be/U9H60qtw0Yg, https://www.youtube.com/watch?v=AY9MnQ4x3zk, and 
+https://ryanstutorials.net/pygame-tutorial/pygame-shapes.php for game_start(screen) method"""
 # displays game start screen with easy, medium, and hard difficulty levels
 def game_start(screen):
     title_font = pygame.font.Font(None, 90)
